@@ -42,12 +42,14 @@ const LoadingFallback = () => (
 );
 
 function App() {
-  const [isMobile, setIsMobile] = useState(
-    window.innerWidth <= 900 || ('ontouchstart' in window || navigator.maxTouchPoints > 0)
-  );
+  const checkDevice = () => {
+    return window.innerWidth <= 900 || ('ontouchstart' in window || navigator.maxTouchPoints > 0);
+  };
+
+  const [isMobile, setIsMobile] = useState(checkDevice());
 
   useEffect(() => {
-    const handleResize = () => setIsMobile(window.innerWidth <= 900);
+    const handleResize = () => setIsMobile(checkDevice());
     window.addEventListener('resize', handleResize);
     return () => window.removeEventListener('resize', handleResize);
   }, []);
@@ -79,7 +81,7 @@ function App() {
         <p style={{ fontSize: '1.2rem', maxWidth: '500px', lineHeight: '1.6', color: '#e2e8f0' }}>
           Esta experiencia inmersiva ha sido diseñada en exclusiva para dispositivos móviles.
           <br /><br />
-          Para disfrutar del mapa interactivo y nuestro dashboard , por favor <strong>accede desde tu teléfono móvil</strong> o reduce el ancho de esta ventana.
+          Para disfrutar del mapa interactivo y nuestro dashboard, por favor <strong>accede desde tu teléfono móvil</strong> o reduce el ancho de esta ventana.
         </p>
       </div>
     );
