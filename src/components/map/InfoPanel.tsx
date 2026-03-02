@@ -194,7 +194,7 @@ const InfoPanel: React.FC<InfoPanelProps> = ({ selectedItem, onClose, markerColo
   };
 
   const sharePage = async () => {
-    const GeoLearnMapUrl = `${window.location.href}?lat=${selectedItem.latitud}&lng=${selectedItem.longitud}`;
+    const GeoLearnMapUrl = `${window.location.origin}${window.location.pathname}?busqueda=${encodeURIComponent(selectedItem.nombre)}`;
     const shareData = {
       title: selectedItem.nombre,
       text: `Mira este lugar en Tenerife: ${selectedItem.nombre}\n\nLo he descubierto en GeoLearn Tenerife 🌍\n¡Abre el enlace para verlo en el mapa!`,
