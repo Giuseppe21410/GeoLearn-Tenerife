@@ -45,9 +45,7 @@ const LoadingFallback = () => (
 );
 
 function App() {
-  const checkDevice = () => {
-    return window.innerWidth <= 900 || ('ontouchstart' in window || navigator.maxTouchPoints > 0);
-  };
+  const checkDevice = () => window.innerWidth <= 900;
 
   const [isMobile, setIsMobile] = useState(checkDevice());
 
