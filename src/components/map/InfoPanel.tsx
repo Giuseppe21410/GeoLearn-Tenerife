@@ -13,9 +13,12 @@ interface InfoPanelProps {
   markerColor: string;
 }
 
-const MOBILE_BREAKPOINT = 900;
 
-const isMobile = () => window.innerWidth <= MOBILE_BREAKPOINT;
+const isMobile = () => {
+  const isMobileUA = /iPad|iPhone|iPod|Android|webOS|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+  const isIPadOS = navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1;
+  return window.innerWidth <= 1366 || isMobileUA || isIPadOS;
+};
 
 type SnapState = 'expanded' | 'peek';
 

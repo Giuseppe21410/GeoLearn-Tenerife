@@ -45,7 +45,13 @@ const LoadingFallback = () => (
 );
 
 function App() {
-  const checkDevice = () => window.innerWidth <= 1000;
+  const checkDevice = () => {
+    const isMobileUA = /iPad|iPhone|iPod|Android|webOS|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+    // iOS 13+ en iPad suele solicitar versión de escritorio por defecto (userAgent indica Mac)
+    const isIPadOS = navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1;
+
+    return window.innerWidth <= 1366 || isMobileUA || isIPadOS;
+  };
 
   const [isMobile, setIsMobile] = useState(checkDevice());
 
@@ -68,7 +74,7 @@ function App() {
         justifyContent: 'center',
         alignItems: 'center',
         color: 'white',
-        textAlign: 'center',  
+        textAlign: 'center',
         padding: '20px',
         fontFamily: 'system-ui, -apple-system, sans-serif'
       }}>
