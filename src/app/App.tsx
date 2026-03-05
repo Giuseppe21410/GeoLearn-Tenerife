@@ -45,7 +45,7 @@ const LoadingFallback = () => (
 );
 
 function App() {
-  const checkDevice = () => window.innerWidth <= 900;
+  const checkDevice = () => window.innerWidth <= 1000;
 
   const [isMobile, setIsMobile] = useState(checkDevice());
 
