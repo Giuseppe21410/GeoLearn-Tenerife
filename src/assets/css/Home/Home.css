@@ -100,7 +100,7 @@
   margin-bottom: 30px;
 }
 
-@media (max-width: 900px) {
+@media (max-width: 1366px) {
 
   .icon-page-img img {
     height: 160px;

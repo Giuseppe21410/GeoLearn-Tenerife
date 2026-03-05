@@ -50,6 +50,14 @@ function App() {
     // iOS 13+ en iPad suele solicitar versión de escritorio por defecto (userAgent indica Mac)
     const isIPadOS = navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1;
 
+    // Si es explícitamente un ordenador (Mac sin pantalla táctil o Windows/Linux), no es móvil
+    const isDesktopOS = (/Macintosh/i.test(navigator.userAgent) && navigator.maxTouchPoints === 0) ||
+      /Windows|Linux/i.test(navigator.userAgent) && !/Android/i.test(navigator.userAgent);
+
+    if (isDesktopOS) {
+      return false;
+    }
+
     return window.innerWidth <= 1366 || isMobileUA || isIPadOS;
   };
 

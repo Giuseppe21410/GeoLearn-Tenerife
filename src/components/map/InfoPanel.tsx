@@ -17,6 +17,14 @@ interface InfoPanelProps {
 const isMobile = () => {
   const isMobileUA = /iPad|iPhone|iPod|Android|webOS|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
   const isIPadOS = navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1;
+
+  const isDesktopOS = (/Macintosh/i.test(navigator.userAgent) && navigator.maxTouchPoints === 0) ||
+    /Windows|Linux/i.test(navigator.userAgent) && !/Android/i.test(navigator.userAgent);
+
+  if (isDesktopOS) {
+    return false;
+  }
+
   return window.innerWidth <= 1366 || isMobileUA || isIPadOS;
 };
 

@@ -212,7 +212,7 @@ td {
     background: #f1f5f9;
 }
 
-@media (max-width: 900px) {
+@media (max-width: 1366px) {
     .advanced-list-section.glass {
         padding: 1rem;
         min-height: unset;
