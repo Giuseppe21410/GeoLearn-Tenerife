@@ -2,7 +2,7 @@
   position: fixed;
   bottom: 20px;
   right: 20px;
-  z-index: 1000;
+  z-index: 9999;
 }
 
 .chat-toggle {
@@ -40,7 +40,7 @@
 
 .chat-window {
   position: absolute;
-  z-index: 1001;
+  z-index: 10000;
   bottom: 76px;
   right: 0;
   width: 340px;
