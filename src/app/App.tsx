@@ -62,13 +62,28 @@ function App() {
   };
   const checkOrientation = () => window.innerWidth > window.innerHeight;
 
+  const checkTablet = () => {
+    const isIPadOS = navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1;
+    const isIPad = /iPad/i.test(navigator.userAgent) || isIPadOS;
+    const isAndroidTablet = /Android/i.test(navigator.userAgent) && !/Mobile/i.test(navigator.userAgent);
+
+    // Consideramos tablet si el lado más corto es >= 600px (móviles grandes suelen ser ~430px)
+    const minDimension = Math.min(window.innerWidth, window.innerHeight);
+    const maxDimension = Math.max(window.innerWidth, window.innerHeight);
+    const isTabletSize = minDimension >= 600 && maxDimension <= 1366;
+
+    return isIPad || isAndroidTablet || isTabletSize;
+  };
+
   const [isMobile, setIsMobile] = useState(checkDevice());
   const [isLandscape, setIsLandscape] = useState(checkOrientation());
+  const [isTablet, setIsTablet] = useState(checkTablet());
 
   useEffect(() => {
     const handleResize = () => {
       setIsMobile(checkDevice());
       setIsLandscape(checkOrientation());
+      setIsTablet(checkTablet());
     };
     window.addEventListener('resize', handleResize);
     return () => window.removeEventListener('resize', handleResize);
@@ -107,7 +122,7 @@ function App() {
     );
   }
 
-  if (isLandscape) {
+  if (isTablet && isLandscape) {
     return (
       <main style={{
         height: '100vh',
