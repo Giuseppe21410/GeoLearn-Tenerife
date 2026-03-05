@@ -57,11 +57,11 @@ const Home: React.FC = () => {
           <Introduction />
           <CategoryGrid />
           <Counter />
-          <ChatBot />
           <StatsSection />
           <Footer />
         </div>
       </section>
+      <ChatBot />
     </main>
   );
 };
